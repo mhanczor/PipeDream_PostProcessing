@@ -3,6 +3,5 @@ function [ hull_ind ] = meshHull( cloud )
 %   Detailed explanation goes here
 
     hull_ind = convhull(cloud(:,1), cloud(:,2));
-   
 end
 

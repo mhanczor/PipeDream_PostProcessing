@@ -14,10 +14,8 @@ function [ filteredSensor ] = sensorFilter( sensorData, direction )
 %Threshold filter
 sensorData(sensorData(:,3) > (0.4318^2),:) = [];
 
-
 n = 0;
 sData = sensorData;
-
 
 %Unwrap the sensor measurement into a line, a 1D signal
 for i = 2:size(sensorData,1)

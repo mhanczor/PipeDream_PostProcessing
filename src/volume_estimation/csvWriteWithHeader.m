@@ -5,7 +5,6 @@ function [] = csvWriteWithHeader( file_path, unitVolData, calcdVolData)
     header = {'Start Location', 'End Location', 'Volume', 'Volume/ft'};
     header = strjoin(header, ',');
     
-        
     try
         file_name = [file_path '/volume.csv'];
         fid = fopen(file_name,'w');

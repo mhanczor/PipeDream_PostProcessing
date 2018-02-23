@@ -19,10 +19,7 @@ for i = 1: size(cloud,1) - 1
             end
         elseif cloud(i+1,1) == pi
             addedPts = [addedPts; -pi, cloud(i+1, 2:3)];
-        else
-            %Write this equation and then run through all the code to see
-            %if it makes sense!!!!
-            
+        else        
             ptHeight = cloud(i,3) + (pi - (cloud(i,1) + 2*pi))*(cloud(i+1, 3) - cloud(i,3))/(cloud(i+1,1) - (cloud(i,1) + 2*pi));
             ptDist = cloud(i,2) + (pi - (cloud(i,1) + 2*pi))*(cloud(i+1, 2) - cloud(i,2))/(cloud(i+1,1) - (cloud(i,1) + 2*pi));
             addedPts = [addedPts; -pi, ptDist, ptHeight; pi, ptDist, ptHeight];
@@ -30,7 +27,6 @@ for i = 1: size(cloud,1) - 1
         
     elseif cloud(i,1) > 0 && cloud(i + 1,1) < 0 && strcmp(direction, 'CCW')
         %Then there has been a transition in the CCW direction
-        
         if cloud(i,1) == pi
             if cloud(i+1,1) == -pi
                 continue

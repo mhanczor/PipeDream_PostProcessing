@@ -76,7 +76,3 @@ while size(tri_list,1) > 0
     w_i = w_i + 1;
 end
 end
-
-
-%Could keep looking on the first point to see if there are other lines that
-%match in the 

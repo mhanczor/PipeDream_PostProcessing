@@ -2,13 +2,11 @@ function [ padCloud ] = addEndPoints( cloud, startPt, endPt)
 %UNTITLED2 Summary of this function goes here
 %   Detailed explanation goes here
 
-
 %Find the first point along the x direction and the last point
 % minPt = min(cloud(:,2));
 % endPt= max(cloud(:,2));
 
 theta = (-pi:2*pi/100:pi)';
-
 
 %Create a seach cloud where the second axis (previously 2pi) is convereted
 %to arc length distance between points for better approx NN, use 29" as the
@@ -20,7 +18,6 @@ radConver = 0.3683;
 %Stretched cloud along the 2pi axis to arclength
 sCloud = [cloud(:,1)*radConver, cloud(:,2)];
     
-
 %Finds the 1-NN of the start points before the section and after the start 
 searchPts = [theta*radConver, ones(size(theta,1),1)*startPt];
 [startNN_0, sD_0] = knnsearch(sCloud(sCloud(:,2) >= startPt, :), searchPts);
@@ -59,7 +56,6 @@ end
 
 %Set the points at -pi to pi, startPt, height found from the linear interp
 padCloud = [theta, ones(size(startNN_0,1),1)*startPt, padStart; theta, ones(size(endNN_0,1),1)*endPt, padEnd];
-
 
 %Reduce the cloud so it only has points within the desired range
 cloud(cloud(:,2) < startPt, :) =[];

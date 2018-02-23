@@ -4,7 +4,6 @@ function [ sideTri, modCloud2] = sideMesh( cloud1, cloud2)
 %   index where cloud1 is directly before cloud2
 
 %This depends on the hull points not overlapping, need to check for this
-
 % Get the convex hull of the first cloud (return local indexes)
     h1_ind = meshHull(cloud1);
     
@@ -27,7 +26,7 @@ function [ sideTri, modCloud2] = sideMesh( cloud1, cloud2)
         end
     end
     
-%when porting you may want to use the top (inductive) cloud as the
+%May want to use the top (inductive) cloud as the
 %starting cloud to reference off of since the sampling rate is higher for
 %the odmini
     
@@ -37,9 +36,7 @@ function [ sideTri, modCloud2] = sideMesh( cloud1, cloud2)
     h2_ind = h2_ind + size(cloud1, 1);
     
     cloud = [cloud1; cloud2];
-    
-    
-    
+
     %add the first points to the end of the list so the hull is watertight
     h1_ind = [h1_ind; h1_ind(1)];
     h2_ind = [h2_ind; h2_ind(1)];
@@ -61,7 +58,6 @@ end
 
 
 %Should change the point movements to be so there is no intersection still
-
 % Remove these points from a list of available hull points, 
 % these points should be in global index
 
@@ -112,11 +108,7 @@ end
         w_i = w_i + 1;
         
     end
-    
-
-        
-        
-%All points should be connected now, return the triangulation points
+%All points connected now, return the triangulation points
 
 
 end

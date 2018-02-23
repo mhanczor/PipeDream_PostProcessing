@@ -4,8 +4,5 @@ function [ tri_list ] = custTriangulate( cloud )
 %   The cloud loses it's third dimension (z or radius) before triangulation
 
     tri_list = delaunay(cloud(:,1), cloud(:,2));
-    
-    
-
 end
 
