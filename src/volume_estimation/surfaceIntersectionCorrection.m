@@ -52,9 +52,7 @@ for i = 1:size(odTri,1)
         d = -N*modODCloud(odTri(i,1),:)';
         dv = (N*posIntPts(:,1:3)'+repmat(d, 1, size(posIntPts,1)))';
         idxs = posIntPts(dv > 0,4);
-        
-        
-        
+               
         %Project the points below the surface up to the surface
         if ~isempty(idxs)
              cldAdjust = (-1/N(3))*(repmat(d,size(idxs,1),1) ...
@@ -75,11 +73,9 @@ for i = 1:size(odTri,1)
         
 end
 
-
 if intersections < size(imaCloud,1)
     warning('VolEst:SurfaceCheck','Not all points were checked for surface intersection errors')
 end
-    
 
 end
 

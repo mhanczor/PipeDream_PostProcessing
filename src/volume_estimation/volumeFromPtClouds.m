@@ -3,10 +3,6 @@ function [ volume ] = volumeFromPtClouds( odCloud, imaCloud, viz, curStart, curE
 %   Flattened 2.5D clouds only, use prepSensorCloud before this if taking
 %   in circular data
 
-
-
-
-
 % startPt = min(min(odCloud(:,2)), min(imaCloud(:,2)));
 % endPt = max(max(odCloud(:,2)), max(imaCloud(:,2)));
 
@@ -67,7 +63,6 @@ end
 
 [sideTri, imaCloud] = sideMesh(odCloud, imaCloud);
 disp('Wrapped Mesh Complete');
-
 
 %Convert the points to a single cloud and adjust the indices as needed
 cloud = [odCloud; imaCloud];

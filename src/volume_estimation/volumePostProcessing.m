@@ -86,7 +86,6 @@ end
 
 disp('Sensor data loaded')
 
-
 %Plots the data for the whole length of pipe specified by the start and end pts
 %ODmini data is in red, IMA data is in blue
 if visualize
@@ -106,15 +105,12 @@ if visualize
     scatter3(plotIMA(:,1), plotIMA(:,2), plotIMA(:,3), 'b');
 end
 
-
-
 %Convert to theta, x, radius^2 coordinate system and filter points
 prepODCloud = prepSensorCloud(odmini_sensors, odminiData, rotDir);
 disp('OD1 Cloud Prepped')
 
 prepIMACloud = prepSensorCloud(ima_sensors, imaData, rotDir);
 disp('IMA Cloud Prepped')
-
 
 %Make sure the actual clouds are within the user specified start and end
 %pts
@@ -126,11 +122,9 @@ if max([max(prepIMACloud(:,2)), max(prepODCloud(:,2))]) < endPt
     endPt = max([max(prepIMACloud(:,2)), max(prepODCloud(:,2))]);
 end
 
-
 curStart = startPt;
 curEnd = startPt + unit_size;
     
-
 if abs(prepODCloud(1,2) - prepIMACloud(1,2)) >  0.010
     error('Starting offset between IMA and ODMini is too large!')
 end

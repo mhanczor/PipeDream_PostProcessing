@@ -5,7 +5,6 @@
 clear, close all
 load('bags\sim_cloud_3m.mat');
 
-
 figure
 hold on
 plotOD = [od0; od1];
