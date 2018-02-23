@@ -12,7 +12,6 @@ bags/
 *.bag
 
 #Images
-*.png
 
 # Python .gitignore
 
