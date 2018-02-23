@@ -1,0 +1,36 @@
+PipeDream volume estimation from point cloud implemented in Matlab:
+
+-------------------------------------------------------------------------------------------------
+
+To implement the volume estimation run:
+
+volumePostProcessing(file_path, ima_sensors, odmini_sensors, unit_size, visualize, startPt, endPt)
+
+Inputs:
+	file_path: path to the processed bag file which contains the odmini and ima sensor .csv files.  These files must be labeled ima_x_pose.csv or od1_x_pose.csv where x is the sensor number from 0 				   to N
+	ima_sensors: number of ima sensors csv files to load
+	odmini_sensors: number of odmini sensors csv files to load
+	unit_size: length of pipe over which the volue will be estimated in meters. For a nominal 1 foot section use '0.3048'
+	visualize: used for viewing plots of the data, will not work unless run in the matlab GUI, otherwise use 'false'
+	startPt: starting point to analyze the data from. For an enitre pipe analysis use '0'
+	endPt: ending point of the data analysis.  For an entire pipe analysis use '0'
+
+Outputs:
+	A .csv file is output into the file_path directory called volume.csv. This file is an Nx4 matrix where N is the number of unit steps (length of the pipe in ft if using 1ft increments)
+	The matrix is comprised of 4 column vectors: [startLoc, stopLoc, volume, volPerFoot]
+		startLoc - start point along the length of the pipe that the volume represents (in meters)
+		stopLoc - end point along the length of the pipe that the volume represents (in meters)
+		volume - volume over the current section
+		volumePerFoot - volume per 1ft section, important for edge cases where less than a foot may be considered or if the unit step size is not a foot
+	The volumePerFoot is the maximum  volume over that 1ft section based on the overlaping sections that are measured through the length of the pipe.  Therefore you should use the volumePerFoot 	measurements for the cut recommendations and display since they are conservative.
+		
+
+---------------------------------------------------------------------------------------------------
+
+
+To run this program from the command line or bash script use:
+matlab -nosplash -nodesktop -nojvm -r "cd('PATH_TO_VOLUME_ESTIMATION_FUNCTION');try warning('off', 'MATLAB:delaunay:DupPtsDelaunayWarnID');warning('off', 'VolEst:SurfaceCheck'); pipeVol = volumePostProcessing('PATH_TO_BAG_FILE', #OFIMAs, #OFODMINIs, #UNIT_MEASUREMENT_DIST, false, STARTPOINT, ENDPOINT);disp(pipeVol); catch disp('Something went wrong'); exit(1); end;  quit"
+
+There is a bash script that runs this in Post-Processing/Matlab/volume_estimation.sh
+
+This has also been implemented in a python program in the repo: Post-Processing/Matlab/volumeEst.py
